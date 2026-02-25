@@ -35,12 +35,12 @@ export default function AboutPage() {
           className="object-cover w-full h-full"
           src="/or.jpg"
         />
-        <div className="absolute inset-0 bg-black/20 backdrop-blur-md" />
+        <div className="absolute inset-0 backdrop-blur-md" />
       </div>
 
       {/* HEADER */}
       <div className="relative z-10 mx-auto w-full max-w-screen-xl px-6 lg:px-12 py-10 md:py-14 dark:text-default-600">
-        <h1 className="mt-2 text-3xl md:text-6xl font-bold tracking-tight !text-[#2c5ea0]/80 dark:text-default-600">
+        <h1 className="mt-2 text-3xl md:text-6xl font-bold tracking-tight !text-[#4a86d8] dark:text-default-600">
           Nuestra compañía
         </h1>
         <p className="mt-3 max-w-none text-base md:text-2xl dark:text-default-800 light:text-default-800">
@@ -63,7 +63,7 @@ export default function AboutPage() {
             >
               <CardHeader className="flex flex-col items-center gap-4 pb-2 pt-6">
                 <div className="text-center">
-                  <p className="text-xl font-bold uppercase tracking-widest text-[#2c5ea0]/80">
+                  <p className="text-xl font-bold uppercase tracking-widest text-[#4a86d8]">
                     {it.title}
                   </p>
                 </div>
@@ -74,7 +74,7 @@ export default function AboutPage() {
                   <ul className="flex flex-col gap-2 items-start">
                     {it.body.map((item) => (
                       <li key={item} className="text-default-600 dark:text-default-600 text-base">
-                        <span className="text-[#2c5ea0] mr-2">•</span>
+                        <span className="text-[#4a86d8] mr-2">•</span>
                         {item}
                       </li>
                     ))}

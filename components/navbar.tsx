@@ -88,7 +88,7 @@ export const Navbar = () => {
           <Button as={Link} href="/about">
             Quienes somos
           </Button>
-          <Button as={Link} className="bg-[#2c5ea0] text-white" href="/contact">
+          <Button as={Link} className="bg-[#4a86d8] text-white" href="/contact">
             Contacto
           </Button>
           <ThemeSwitch />
