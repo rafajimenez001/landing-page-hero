@@ -2,6 +2,7 @@
 import { Card, CardHeader, CardBody } from "@heroui/card";
 import { Divider } from "@heroui/divider";
 import { Chip } from "@heroui/chip";
+import { Image } from "@heroui/image";
 
 const items = [
   {
@@ -27,24 +28,28 @@ const items = [
 export default function AboutPage() {
   return (
     <section className="relative w-full">
-      {/* Background decorative elements */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute -top-[20%] -right-[10%] h-[800px] w-[800px] rounded-full bg-[#2c5ea0] opacity-20 blur-[100px]" />
-        <div className="absolute -bottom-[20%] -left-[10%] h-[800px] w-[800px] rounded-full bg-cyan-500 opacity-20 blur-[100px]" />
+      {/* Glassmorphism Background */}
+      <div className="fixed inset-0 z-0">
+        <img
+          alt="Modern corporate background"
+          className="object-cover w-full h-full"
+          src="/or.jpg"
+        />
+        <div className="absolute inset-0 bg-black/20 backdrop-blur-md" />
       </div>
 
       {/* HEADER */}
       <div className="relative z-10 mx-auto w-full max-w-screen-xl px-6 lg:px-12 py-10 md:py-14 dark:text-default-600">
-        <h1 className="mt-2 text-3xl md:text-6xl font-bold tracking-tight text-foreground dark:text-default-600">
+        <h1 className="mt-2 text-3xl md:text-6xl font-bold tracking-tight !text-[#2c5ea0]/80 dark:text-default-600">
           Nuestra compañía
         </h1>
-        <p className="mt-3 max-w-none text-base md:text-2xl text-default-600 dark:text-default-600">
+        <p className="mt-3 max-w-none text-base md:text-2xl dark:text-default-800 light:text-default-800">
           Los ejes que definen nuestra cultura y nuestra proyección.
         </p>
       </div>
 
       <div className="relative z-10 mx-auto w-full max-w-screen-2xl px-6 lg:px-12">
-        <Divider className="mb-8" />
+        {/* <Divider className="mb-8" /> */}
       </div>
 
       {/* CARDS  */}
@@ -53,7 +58,8 @@ export default function AboutPage() {
           {items.map((it) => (
             <Card
               key={it.title}
-              className="border-t-4 border-t-[#2c5ea0] border-default-200/60 bg-white/80 backdrop-blur-md shadow-md dark:bg-background/60"
+              className=" border-default-200/60 bg-white/80 backdrop-blur-lg shadow-lg dark:bg-background/60"
+              isHoverable={true}
             >
               <CardHeader className="flex flex-col items-center gap-4 pb-2 pt-6">
                 <div className="text-center">
@@ -83,6 +89,6 @@ export default function AboutPage() {
           ))}
         </div>
       </div>
-    </section>
+    </section >
   );
 }
