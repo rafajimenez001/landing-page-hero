@@ -6,6 +6,7 @@ export default function ContactPage() {
   return (
     <div className="container mx-auto py-12 max-w-4xl">
       <h1 className="mt-2 text-3xl md:text-6xl font-bold tracking-tight text-foreground dark:text-default-600 !text-[#2c5ea0]/80">Contacto</h1>
+
       <p className="text-md">¿Cómo te podemos ayudar?</p>
       <div className="flex flex-col gap-12 mt-16">
         {/* Celaya Contact */}
