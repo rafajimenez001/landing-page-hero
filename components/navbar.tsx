@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import {
   Navbar as HeroUINavbar,
   NavbarContent,
@@ -27,6 +28,11 @@ import {
 
 export const Navbar = () => {
   const pathname = usePathname();
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const searchInput = (
     <Input
@@ -84,10 +90,7 @@ export const Navbar = () => {
         justify="end"
       >
         <NavbarItem className="hidden sm:flex gap-2">
-          <Button as={NextLink} href="/">
-            Inicio
-          </Button>
-          {pathname !== "/" && (
+          {isMounted && pathname !== "/" && (
             <Button as={NextLink} href="/">
               Inicio
             </Button>
@@ -95,12 +98,16 @@ export const Navbar = () => {
           <Button >
             Productos
           </Button>
-          <Button as={Link} href="/about">
-            Quienes somos
-          </Button>
-          <Button as={Link} className="bg-[#4a86d8] text-white" href="/contact">
-            Contacto
-          </Button>
+          {isMounted && pathname !== "/about" && (
+            <Button as={Link} href="/about">
+              Quienes somos
+            </Button>
+          )}
+          {isMounted && pathname !== "/contact" && (
+            <Button as={Link} className="bg-[#4a86d8] text-white" href="/contact">
+              Contacto
+            </Button>
+          )}
           <ThemeSwitch />
         </NavbarItem>
       </NavbarContent>
