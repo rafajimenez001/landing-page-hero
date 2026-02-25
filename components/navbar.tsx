@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Navbar as HeroUINavbar,
   NavbarContent,
@@ -13,6 +15,7 @@ import { Link } from "@heroui/link";
 import { Input } from "@heroui/input";
 import { link as linkStyles } from "@heroui/theme";
 import NextLink from "next/link";
+import { usePathname } from "next/navigation";
 import clsx from "clsx";
 
 import { siteConfig } from "@/config/site";
@@ -23,6 +26,8 @@ import {
 } from "@/components/icons";
 
 export const Navbar = () => {
+  const pathname = usePathname();
+
   const searchInput = (
     <Input
       aria-label="Producto..."
@@ -82,6 +87,11 @@ export const Navbar = () => {
           <Button as={NextLink} href="/">
             Inicio
           </Button>
+          {pathname !== "/" && (
+            <Button as={NextLink} href="/">
+              Inicio
+            </Button>
+          )}
           <Button >
             Productos
           </Button>
