@@ -40,7 +40,7 @@ export default function AboutPage() {
 
       {/* HEADER */}
       <div className="relative z-10 mx-auto w-full max-w-screen-xl px-6 lg:px-12 py-10 md:py-14 dark:text-default-600">
-        <h1 className="mt-2 text-3xl md:text-6xl font-bold tracking-tight !text-[#4a86d8] dark:text-default-600">
+        <h1 className="mt-2 text-4xl md:text-6xl font-bold tracking-tight !text-[#064194] dark:text-default-600">
           Nuestra compañía
         </h1>
         <p className="mt-3 max-w-none text-base md:text-2xl dark:text-default-800 light:text-default-800">
@@ -63,7 +63,7 @@ export default function AboutPage() {
             >
               <CardHeader className="flex flex-col items-center gap-4 pb-2 pt-6">
                 <div className="text-center">
-                  <p className="text-xl font-bold uppercase tracking-widest text-[#4a86d8]">
+                  <p className="text-2xl font-bold tracking-widest text-[#064194]">
                     {it.title}
                   </p>
                 </div>

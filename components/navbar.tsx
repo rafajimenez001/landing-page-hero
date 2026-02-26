@@ -95,9 +95,11 @@ export const Navbar = () => {
               Inicio
             </Button>
           )}
-          <Button >
-            Productos
-          </Button>
+          {isMounted && pathname !== "/products" && (
+            <Button as={Link} href="/products">
+              Productos
+            </Button>
+          )}
           {isMounted && pathname !== "/about" && (
             <Button as={Link} href="/about">
               Quienes somos
