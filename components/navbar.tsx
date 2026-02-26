@@ -28,11 +28,7 @@ import {
 
 export const Navbar = () => {
   const pathname = usePathname();
-  const [isMounted, setIsMounted] = useState(false);
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   const searchInput = (
     <Input
@@ -85,31 +81,22 @@ export const Navbar = () => {
         </ul> */}
       </NavbarContent>
 
-      <NavbarContent
-        className="hidden sm:flex basis-1/5 sm:basis-full"
-        justify="end"
-      >
+      <NavbarContent className="hidden sm:flex basis-1/5 sm:basis-full" justify="end">
         <NavbarItem className="hidden sm:flex gap-2">
-          {isMounted && pathname !== "/" && (
-            <Button as={NextLink} href="/">
-              Inicio
+          {siteConfig.navItems.map((item) => (
+            <Button
+              key={item.href}
+              as={NextLink}
+              href={item.href}
+              color={item.href === pathname ? "primary" : "default"}
+              variant={item.href === pathname ? "shadow" : "light"}
+              className={clsx({
+                "bg-[#4a86d8] text-white": item.href === "/contact",
+              })}
+            >
+              {item.label}
             </Button>
-          )}
-          {isMounted && pathname !== "/products" && (
-            <Button as={Link} href="/products">
-              Productos
-            </Button>
-          )}
-          {isMounted && pathname !== "/about" && (
-            <Button as={Link} href="/about">
-              Quienes somos
-            </Button>
-          )}
-          {isMounted && pathname !== "/contact" && (
-            <Button as={Link} className="bg-[#4a86d8] text-white" href="/contact">
-              Contacto
-            </Button>
-          )}
+          ))}
           <ThemeSwitch />
         </NavbarItem>
       </NavbarContent>
