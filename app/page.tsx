@@ -45,7 +45,7 @@ export default function Home() {
             <p className="text-default-800">
               Nos dedicamos a la venta de dispositivos médicos necesarios para tu cirugía.
             </p>
-            <Button className="w-fit bg-[#4a86d8] text-white" size="md">
+            <Button className="w-fit bg-[#064194] text-white" size="md">
               Ver Productos
             </Button>
           </CardBody>

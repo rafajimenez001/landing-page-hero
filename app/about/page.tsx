@@ -40,8 +40,8 @@ export default function AboutPage() {
 
       {/* HEADER */}
       <div className="relative z-10 mx-auto w-full max-w-screen-xl px-6 lg:px-12 py-10 md:py-14 dark:text-default-600">
-        <h1 className="mt-2 text-4xl md:text-6xl font-bold tracking-tight !text-[#064194] dark:text-default-600">
-          Nuestra compañía
+        <h1 className="mt-2 text-3xl md:text-5xl font-bold tracking-tight text-foreground dark:text-default-600">
+          <span className="!text-[#064194]">Nuestra </span>Compañía
         </h1>
         <p className="mt-3 max-w-none text-base md:text-2xl dark:text-default-800 light:text-default-800">
           Los ejes que definen nuestra cultura y nuestra proyección.
