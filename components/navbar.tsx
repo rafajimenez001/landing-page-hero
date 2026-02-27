@@ -63,22 +63,6 @@ export const Navbar = () => {
             />
           </NextLink>
         </NavbarBrand>
-        {/* <ul className="hidden lg:flex gap-4 justify-start ml-2">
-          {siteConfig.navItems.map((item) => (
-            <NavbarItem key={item.href}>
-              <NextLink
-                className={clsx(
-                  linkStyles({ color: "foreground" }),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium",
-                )}
-                color="foreground"
-                href={item.href}
-              >
-                {item.label}
-              </NextLink>
-            </NavbarItem>
-          ))}
-        </ul> */}
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex basis-1/5 sm:basis-full" justify="end">
@@ -88,11 +72,10 @@ export const Navbar = () => {
               key={item.href}
               as={NextLink}
               href={item.href}
-              color={item.href === pathname ? "primary" : "default"}
-              variant={item.href === pathname ? "shadow" : "light"}
               className={clsx({
-                "bg-[#4a86d8] text-white": item.href === "/contact",
+                "bg-[#064194] text-white": item.href === pathname,
               })}
+              variant={item.href === pathname ? "shadow" : "light"}
             >
               {item.label}
             </Button>
