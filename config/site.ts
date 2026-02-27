@@ -2,7 +2,7 @@ export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
   name: "Elite Medical",
-  description: "Make beautiful websites regardless of your design experience.",
+  description: "Empresa lider en el ambito medico por mas de 15 años",
   navItems: [
     {
       label: "Inicio",
