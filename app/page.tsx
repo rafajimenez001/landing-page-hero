@@ -20,30 +20,36 @@ export default function Home() {
         />
       </div>
       <div className="py-10 grid grid-cols-1 md:grid-cols-2 gap-25">
-        <Card className="py-4 px-4">
+        <Card className="py-4 px-4" shadow="lg">
           <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
             <div className="flex flex-col">
               <h1 className="text-xl font-bold">¿Quiénes somos?</h1>
             </div>
           </CardHeader>
           <CardBody className="overflow-visible py-2">
-            <p className="text-default-800">
-              Nos dedicamos a la venta de dispositivos médicos necesarios para tu cirugía.
+            <p className="text-default-800 text-justify">
+              Empresa líder en la distribución de
+              soluciones innovadoras para la salud, con 15
+              años de experiencia, especializada en
+              reemplazo articular, columna, trauma,
+              artroscopía, cirugía robótica y más.
+              Ofrecemos productos de alta calidad con un
+              fuerte compromiso con la confiabilidad, la
+              excelencia y la tecnología de vanguardia,
+              siempre enfocados en mejorar el bienestar
+              del paciente y en brindar un servicio
+              profesional y ético.
             </p>
           </CardBody>
-          <CardFooter>
-            <p className="text-default-400">
-              Trabajamos con las mejores marcas
-            </p>
-          </CardFooter>
         </Card>
-        <Card className="py-4 px-4">
+        <Card className="py-4 px-4" shadow="lg">
           <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
             <h1 className="text-xl font-bold">Productos</h1>
           </CardHeader>
           <CardBody className="py-2 items-center">
-            <p className="text-default-800">
-              Nos dedicamos a la venta de dispositivos médicos necesarios para tu cirugía.
+            <p className="text-default-800 text-justify">
+              Colaboramos con las marcas líderes mundiales en el sector salud, uniendo
+              innovación, calidad y confiabilidad para ofrecer soluciones de vanguardia.
             </p>
             <Button className="w-fit bg-[#064194] text-white" size="md">
               Ver Productos
