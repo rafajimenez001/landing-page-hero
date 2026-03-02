@@ -51,7 +51,7 @@ export default function Home() {
               Colaboramos con las marcas líderes mundiales en el sector salud, uniendo
               innovación, calidad y confiabilidad para ofrecer soluciones de vanguardia.
             </p>
-            <Button className="w-fit bg-[#064194] text-white" size="md">
+            <Button className="py-3 w-fit bg-[#064194] text-white" size="md">
               Ver Productos
             </Button>
           </CardBody>
