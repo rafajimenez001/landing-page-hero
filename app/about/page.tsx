@@ -27,7 +27,7 @@ const items = [
 
 export default function AboutPage() {
   return (
-    <section className="relative w-full">
+    <section className="container mx-auto px-6 relative w-full">
       {/* Glassmorphism Background */}
       <div className="fixed inset-0 z-0">
         <img

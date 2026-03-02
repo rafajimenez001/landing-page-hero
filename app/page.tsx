@@ -18,45 +18,54 @@ export default function Home() {
           radius="none"
           className="w-full h-full object-cover object-center"
         />
+        <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+          <h1 className="text-white text-4xl md:text-6xl font-bold">Elite Medical</h1>
+        </div>
       </div>
-      <div className="py-10 grid grid-cols-1 md:grid-cols-2 gap-25">
-        <Card className="py-4 px-4" shadow="lg">
-          <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
-            <div className="flex flex-col">
-              <h1 className="text-xl font-bold">¿Quiénes somos?</h1>
-            </div>
-          </CardHeader>
-          <CardBody className="overflow-visible py-2">
-            <p className="text-default-800 text-justify">
-              Empresa líder en la distribución de
-              soluciones innovadoras para la salud, con 15
-              años de experiencia, especializada en
-              reemplazo articular, columna, trauma,
-              artroscopía, cirugía robótica y más.
-              Ofrecemos productos de alta calidad con un
-              fuerte compromiso con la confiabilidad, la
-              excelencia y la tecnología de vanguardia,
-              siempre enfocados en mejorar el bienestar
-              del paciente y en brindar un servicio
-              profesional y ético.
-            </p>
-          </CardBody>
-        </Card>
-        <Card className="py-4 px-4" shadow="lg">
-          <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
-            <h1 className="text-xl font-bold">Productos</h1>
-          </CardHeader>
-          <CardBody className="py-2 items-center">
-            <p className="text-default-800 text-justify">
-              Colaboramos con las marcas líderes mundiales en el sector salud, uniendo
-              innovación, calidad y confiabilidad para ofrecer soluciones de vanguardia.
-            </p>
-            <Button className="my-3 w-fit bg-[#064194] text-white" size="md">
-              Ver Productos
-            </Button>
-          </CardBody>
-        </Card>
+      <div className="container mx-auto px-6">
+        <div className="py-10 grid grid-cols-1 md:grid-cols-2 gap-25">
+          <Card className="py-4 px-4" shadow="lg">
+            <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
+              <div className="flex flex-col">
+                <h1 className="text-xl font-bold">¿Quiénes somos?</h1>
+              </div>
+            </CardHeader>
+            <CardBody className="overflow-visible py-2">
+              <p className="text-default-800 text-justify">
+                Empresa líder en la distribución de
+                soluciones innovadoras para la salud, con 15
+                años de experiencia, especializada en
+                reemplazo articular, columna, trauma,
+                artroscopía, cirugía robótica y más.
+                Ofrecemos productos de alta calidad con un
+                fuerte compromiso con la confiabilidad, la
+                excelencia y la tecnología de vanguardia,
+                siempre enfocados en mejorar el bienestar
+                del paciente y en brindar un servicio
+                profesional y ético.
+              </p>
+            </CardBody>
+          </Card>
+          <Card className="py-4 px-4" shadow="lg">
+            <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
+              <h1 className="text-xl font-bold">Productos</h1>
+            </CardHeader>
+            <CardBody className="py-2 items-center">
+              <p className="text-default-800 text-justify">
+                Colaboramos con las marcas líderes mundiales en el sector salud, uniendo
+                innovación, calidad y confiabilidad para ofrecer soluciones de vanguardia.
+              </p>
+              <Button
+                as={Link}
+                href="/products"
+                className="my-3 w-fit bg-[#064194] text-white" size="md" >
+
+                Ver Productos
+              </Button>
+            </CardBody>
+          </Card>
+        </div>
       </div>
-    </section>
+    </section >
   );
 }

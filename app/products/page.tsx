@@ -29,7 +29,7 @@ const products = [
 
 export default function ProductsPage() {
   return (
-    <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
+    <section className="container mx-auto px-6 flex flex-col items-center justify-center gap-4 py-8 md:py-10">
       <div className="inline-block max-w-2xl text-center justify-center">
         <h1 className="mt-2 text-3xl md:text-5xl font-bold tracking-tight text-foreground dark:text-default-600">
           <span className="!text-[#064194]">Nuestros </span>Productos
