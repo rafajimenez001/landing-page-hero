@@ -11,12 +11,12 @@ import { Button } from "@heroui/button";
 export default function Home() {
   return (
     <section className="flex flex-col items-center justify-center mt-0 pt-0">
-      <div className="w-screen h-[400px] md:h-[600px] overflow-hidden">
+      <div className="relative w-full h-[250px] md:h-[400px] lg:h-[600px] overflow-hidden">
         <Image
           src="/main.jpg"
           alt="Doctor"
           radius="none"
-          className="relative -top-[200px] w-full object-cover"
+          className="w-full h-full object-cover object-center"
         />
       </div>
       <div className="py-10 grid grid-cols-1 md:grid-cols-2 gap-25">
@@ -51,7 +51,7 @@ export default function Home() {
               Colaboramos con las marcas líderes mundiales en el sector salud, uniendo
               innovación, calidad y confiabilidad para ofrecer soluciones de vanguardia.
             </p>
-            <Button className="py-3 w-fit bg-[#064194] text-white" size="md">
+            <Button className="my-3 w-fit bg-[#064194] text-white" size="md">
               Ver Productos
             </Button>
           </CardBody>
