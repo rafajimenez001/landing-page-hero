@@ -1,20 +1,23 @@
-// app/about/page.tsx
-import { Card, CardHeader, CardBody } from "@heroui/card";
-import { Divider } from "@heroui/divider";
-import { Chip } from "@heroui/chip";
-import { Image } from "@heroui/image";
+"use client";
+
+import { useState } from "react";
+import { Card, CardBody } from "@heroui/card";
+import { motion } from "framer-motion";
 
 const items = [
   {
     title: "Misión",
+    color: "#064194",
     body: "Brindar soluciones de salud de alta calidad y a la vanguardia que mejoren el bienestar de las personas, guiadas por la excelencia, la confiabilidad y la ética.",
   },
   {
     title: "Visión",
+    color: "#0077b6",
     body: "Ser el distribuidor líder de soluciones de salud en México, impulsado por la innovación, la calidad y la confianza.",
   },
   {
     title: "Valores",
+    color: "#4f46e5",
     body: [
       "Honestidad",
       "Responsabilidad",
@@ -26,69 +29,114 @@ const items = [
 ];
 
 export default function AboutPage() {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
   return (
-    <section className="container mx-auto px-6 relative w-full">
-      {/* Glassmorphism Background */}
-      <div className="fixed inset-0 z-0">
-        <img
-          alt="Modern corporate background"
-          className="object-cover w-full h-full"
-          src="/or.jpg"
+    <section className="flex flex-col items-center justify-center mt-0 pt-0">
+
+      {/* ── Hero ── */}
+      <div className="relative w-full h-[45vh] md:h-[60vh] lg:h-[70vh] overflow-hidden bg-[#03245a]">
+
+        {/* Soft-load image */}
+        <motion.img
+          src="/brands.png"
+          alt="Nuestra Compañía"
+          className="absolute inset-0 w-full h-full object-cover object-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: imageLoaded ? 1 : 0 }}
+          transition={{ duration: 1.1, ease: "easeOut" }}
+          onLoad={() => setImageLoaded(true)}
         />
-        <div className="absolute inset-0 backdrop-blur-md" />
+
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-black/10" />
+
+        {/* Hero text */}
+        <div className="absolute bottom-0 left-0 w-full px-6 md:px-16 pb-10 md:pb-14">
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
+            className="text-white/70 text-sm md:text-base font-semibold uppercase tracking-[0.2em] mb-2"
+          >
+            Elite Medical
+          </motion.p>
+          <motion.h1
+            initial={{ opacity: 0, y: 28 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.45 }}
+            className="text-white text-5xl md:text-7xl font-bold tracking-tight leading-tight"
+          >
+            Nuestra Compañía
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: 0.62 }}
+            className="text-white/80 text-base md:text-lg mt-3 max-w-xl leading-relaxed"
+          >
+            Los ejes que definen nuestra cultura y nuestra proyección.
+          </motion.p>
+        </div>
       </div>
 
-      {/* HEADER */}
-      <div className="relative z-10 mx-auto w-full max-w-screen-xl px-6 lg:px-12 py-10 md:py-14 dark:text-default-600">
-        <h1 className="mt-2 text-3xl md:text-5xl font-bold tracking-tight text-foreground dark:text-default-600">
-          <span className="!text-[#064194]">Nuestra </span>Compañía
-        </h1>
-        <p className="mt-3 max-w-none text-base md:text-2xl dark:text-default-800 light:text-default-800">
-          Los ejes que definen nuestra cultura y nuestra proyección.
-        </p>
-      </div>
-
-      <div className="relative z-10 mx-auto w-full max-w-screen-2xl px-6 lg:px-12">
-        {/* <Divider className="mb-8" /> */}
-      </div>
-
-      {/* CARDS  */}
-      <div className="relative z-10 mx-auto w-full max-w-screen-2xl px-6 lg:px-12 pb-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-10 items-stretch">
-          {items.map((it) => (
-            <Card
+      {/* ── Cards ── */}
+      <div className="container mx-auto px-6 py-14 max-w-6xl w-full">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {items.map((it, i) => (
+            <motion.div
               key={it.title}
-              className=" border-default-200/60 bg-white/80 backdrop-blur-lg shadow-lg dark:bg-background/60"
-              isHoverable={true}
+              initial={{ opacity: 0, y: 32 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: "easeOut", delay: 0.8 + i * 0.12 }}
             >
-              <CardHeader className="flex flex-col items-center gap-4 pb-2 pt-6">
-                <div className="text-center">
-                  <p className="text-2xl font-bold tracking-widest text-[#064194]">
+              <Card
+                className="h-full shadow-md border border-default-100"
+                style={{ borderTop: `4px solid ${it.color}` }}
+                isHoverable
+              >
+                <CardBody className="px-7 py-7 flex flex-col gap-4">
+                  <h2
+                    className="text-2xl font-bold tracking-wide"
+                    style={{ color: it.color }}
+                  >
                     {it.title}
-                  </p>
-                </div>
-              </CardHeader>
+                  </h2>
 
-              <CardBody className="pt-0 pb-8 px-8 text-center">
-                {Array.isArray(it.body) ? (
-                  <ul className="flex flex-col gap-2 items-start">
-                    {it.body.map((item) => (
-                      <li key={item} className="text-default-600 dark:text-default-600 text-base">
-                        <span className="text-[#4a86d8] mr-2">•</span>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p className="text-default-600 dark:text-default-600 leading-relaxed text-base">
-                    {it.body}
-                  </p>
-                )}
-              </CardBody>
-            </Card>
+                  {Array.isArray(it.body) ? (
+                    <ul className="flex flex-col gap-2">
+                      {it.body.map((item, j) => (
+                        <motion.li
+                          key={item}
+                          initial={{ opacity: 0, x: -12 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{
+                            duration: 0.35,
+                            ease: "easeOut",
+                            delay: 1.0 + i * 0.12 + j * 0.07,
+                          }}
+                          className="flex items-center gap-2 text-base text-default-700"
+                        >
+                          <span
+                            className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                            style={{ backgroundColor: it.color }}
+                          />
+                          {item}
+                        </motion.li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p className="text-base text-default-700 leading-relaxed">
+                      {it.body}
+                    </p>
+                  )}
+                </CardBody>
+              </Card>
+            </motion.div>
           ))}
         </div>
       </div>
-    </section >
+
+    </section>
   );
 }
