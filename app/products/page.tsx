@@ -3,7 +3,9 @@
 import { subtitle } from "@/components/primitives";
 import { Card, CardHeader, CardBody } from "@heroui/card";
 import { Chip } from "@heroui/chip";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { ScanSearch, Bone, Dna, Layers, Activity, Brain, ArrowUp, Search, X } from "lucide-react";
+import { useState, useEffect } from "react";
 
 type Product = { name: string; brand: string; group: string };
 type Category = {
@@ -15,71 +17,6 @@ type Category = {
   products: Product[];
 };
 
-// ─── Icons ────────────────────────────────────────────────────────────────────
-
-const ScopeIcon = () => (
-  <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="12" r="8" />
-    <circle cx="12" cy="12" r="3" />
-    <line x1="12" y1="2" x2="12" y2="4" />
-    <line x1="12" y1="20" x2="12" y2="22" />
-    <line x1="2" y1="12" x2="4" y2="12" />
-    <line x1="20" y1="12" x2="22" y2="12" />
-  </svg>
-);
-
-const PlateIcon = () => (
-  <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
-    <rect x="3" y="7" width="18" height="10" rx="2" />
-    <circle cx="7" cy="10" r="1" fill="currentColor" stroke="none" />
-    <circle cx="7" cy="14" r="1" fill="currentColor" stroke="none" />
-    <circle cx="12" cy="10" r="1" fill="currentColor" stroke="none" />
-    <circle cx="12" cy="14" r="1" fill="currentColor" stroke="none" />
-    <circle cx="17" cy="10" r="1" fill="currentColor" stroke="none" />
-    <circle cx="17" cy="14" r="1" fill="currentColor" stroke="none" />
-    <path d="M3 9h18M3 15h18" strokeOpacity={0.3} />
-  </svg>
-);
-
-const LeafIcon = () => (
-  <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
-    <path d="M12 2C6 2 2 6 2 12s4 10 10 10c2 0 4-1 5.5-2.5C21 16 22 13 22 10 22 5 18 2 12 2z" />
-    <path d="M12 2c0 6-4 10-10 10" />
-    <line x1="12" y1="22" x2="12" y2="12" />
-  </svg>
-);
-
-const SpineIcon = () => (
-  <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
-    <rect x="8" y="2" width="8" height="5" rx="1" />
-    <rect x="8" y="9.5" width="8" height="5" rx="1" />
-    <rect x="8" y="17" width="8" height="5" rx="1" />
-    <line x1="12" y1="7" x2="12" y2="9.5" />
-    <line x1="12" y1="14.5" x2="12" y2="17" />
-  </svg>
-);
-
-const JointIcon = () => (
-  <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
-    <path d="M12 3C9 3 7 5 7 8v2" />
-    <path d="M12 21c3 0 5-2 5-5v-2" />
-    <circle cx="12" cy="12" r="4" />
-    <path d="M7 10a5 5 0 0 0 10 0" />
-    <path d="M7 14a5 5 0 0 0 10 0" />
-  </svg>
-);
-
-const BrainIcon = () => (
-  <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
-    <path d="M12 5a7 7 0 0 0-7 7c0 2.2 1 4.1 2.6 5.4" />
-    <path d="M12 5a7 7 0 0 1 7 7c0 2.2-1 4.1-2.6 5.4" />
-    <path d="M9 12a3 3 0 0 0 6 0" />
-    <path d="M5 12H3M21 12h-2" />
-    <path d="M7.6 17.4L6.2 18.8M17.8 5.2l-1.4 1.4" />
-    <path d="M12 19v2" />
-  </svg>
-);
-
 // ─── Product data ──────────────────────────────────────────────────────────────
 
 const categories: Category[] = [
@@ -88,7 +25,7 @@ const categories: Category[] = [
     title: "Artroscopia",
     description:
       "Instrumental y equipos para procedimientos artroscópicos mínimamente invasivos en hombro, cadera, rodilla y pequeñas articulaciones.",
-    icon: <ScopeIcon />,
+    icon: <ScanSearch className="w-7 h-7" />,
     color: "#064194",
     products: [
       { name: "Artroscopia de Hombro", brand: "STRYKER", group: "Procedimientos" },
@@ -118,7 +55,7 @@ const categories: Category[] = [
     title: "Osteosíntesis",
     description:
       "Sistemas de fijación ósea: placas, clavos intramedulares, tornillos canulados y fijadores externos para trauma y fracturas.",
-    icon: <PlateIcon />,
+    icon: <Bone className="w-7 h-7" />,
     color: "#0077b6",
     products: [
       { name: "APTUS Clavícula 2.8", brand: "MEDARTIS", group: "Sistema APTUS" },
@@ -150,7 +87,7 @@ const categories: Category[] = [
     title: "Osteobiológicos",
     description:
       "Materiales biológicos para la regeneración y reparación ósea: injertos, matrices esponjosas, membranas de sellado y tejidos tendinosos.",
-    icon: <LeafIcon />,
+    icon: <Dna className="w-7 h-7" />,
     color: "#00796b",
     products: [
       { name: "Chips de Hueso (4 variantes)", brand: "Varios", group: "Injertos Óseos" },
@@ -166,7 +103,7 @@ const categories: Category[] = [
     title: "Columna",
     description:
       "Soluciones completas para cirugía de columna: fijación abierta y mínimamente invasiva, cajas intersomáticas cervicales y lumbares, prótesis de disco y vertebroplastia.",
-    icon: <SpineIcon />,
+    icon: <Layers className="w-7 h-7" />,
     color: "#4f46e5",
     products: [
       { name: "Sistema de Fijación Abierto VENUS", brand: "HUMAN TECH", group: "Sistemas de Fijación" },
@@ -200,7 +137,7 @@ const categories: Category[] = [
     title: "Reemplazo Articular",
     description:
       "Prótesis de cadera, rodilla y hombro con opciones cementadas, no cementadas y de revisión para cada necesidad clínica.",
-    icon: <JointIcon />,
+    icon: <Activity className="w-7 h-7" />,
     color: "#b45309",
     products: [
       { name: "ACCOLLADE — Cadera No Cementada, Cabeza Cerámica", brand: "STRYKER", group: "Cadera" },
@@ -221,7 +158,7 @@ const categories: Category[] = [
     title: "Neurocirugía",
     description:
       "Implantes y accesorios para procedimientos neuroquirúrgicos: reconstrucción craneal, clips de aneurisma, drenajes y sistemas valvulares.",
-    icon: <BrainIcon />,
+    icon: <Brain className="w-7 h-7" />,
     color: "#7c3aed",
     products: [
       { name: "Placa de Cráneo Preformada CODUBIX", brand: "ZIMMER", group: "Craneales" },
@@ -237,22 +174,16 @@ const categories: Category[] = [
 
 // ─── Animation variants ────────────────────────────────────────────────────────
 
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.06 } },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 16 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.35, ease: "easeOut" } },
-};
-
 // ─── Product card ──────────────────────────────────────────────────────────────
 
-function ProductCard({ product, color }: { product: Product; color: string }) {
+function ProductCard({ product, color, index }: { product: Product; color: string; index: number }) {
   const hasBrand = product.brand && product.brand !== "—";
   return (
-    <motion.div variants={cardVariants}>
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3, ease: "easeOut", delay: Math.min(index * 0.04, 0.5) }}
+    >
       <Card
         className="h-full border border-default-100 shadow-sm hover:shadow-md transition-shadow duration-200"
         style={{ borderLeft: `4px solid ${color}` }}
@@ -284,9 +215,9 @@ function ProductCard({ product, color }: { product: Product; color: string }) {
 
 // ─── Category section ──────────────────────────────────────────────────────────
 
-function CategorySection({ cat }: { cat: Category }) {
+function CategorySection({ cat, products }: { cat: Category; products: Product[] }) {
   const uniqueBrands = Array.from(
-    new Set(cat.products.map((p) => p.brand).filter((b) => b && b !== "—" && b !== "Varios"))
+    new Set(products.map((p) => p.brand).filter((b) => b && b !== "—" && b !== "Varios"))
   );
 
   return (
@@ -329,29 +260,70 @@ function CategorySection({ cat }: { cat: Category }) {
       </div>
 
       {/* Product grid */}
-      <motion.div
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-60px" }}
-      >
-        {cat.products.map((product, i) => (
-          <ProductCard key={`${product.name}-${i}`} product={product} color={cat.color} />
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {products.map((product, i) => (
+          <ProductCard key={`${product.name}-${i}`} product={product} color={cat.color} index={i} />
         ))}
-      </motion.div>
+      </div>
     </section>
+  );
+}
+
+// ─── Scroll-to-top button ─────────────────────────────────────────────────────
+
+function ScrollToTopButton() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setVisible(window.scrollY > 300);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <AnimatePresence>
+      {visible && (
+        <motion.button
+          key="scroll-top"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 16 }}
+          transition={{ duration: 0.2 }}
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          aria-label="Volver arriba"
+          className="fixed bottom-6 left-6 z-50 flex items-center justify-center rounded-full bg-[#064194] text-white shadow-lg hover:bg-[#0a56c0] active:scale-95 transition-transform
+            w-9 h-9 md:w-12 md:h-12"
+        >
+          <ArrowUp className="w-4 h-4 md:w-5 md:h-5" strokeWidth={2.5} />
+        </motion.button>
+      )}
+    </AnimatePresence>
   );
 }
 
 // ─── Page ──────────────────────────────────────────────────────────────────────
 
 export default function ProductsPage() {
+  const [query, setQuery] = useState("");
+
+  const q = query.trim().toLowerCase();
+
+  const filtered = categories
+    .map((cat) => ({
+      ...cat,
+      products: q
+        ? cat.products.filter((p) => p.name.toLowerCase().includes(q))
+        : cat.products,
+    }))
+    .filter((cat) => cat.products.length > 0);
+
+  const totalMatches = filtered.reduce((acc, cat) => acc + cat.products.length, 0);
+
   return (
     <div className="container mx-auto px-4 md:px-6 py-10 md:py-14 max-w-7xl">
 
       {/* Hero */}
-      <div className="text-center mb-10 md:mb-14">
+      <div className="text-center mb-8 md:mb-10">
         <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
           <span className="text-[#064194]">Nuestros </span>
           <span className="text-foreground">Productos</span>
@@ -361,33 +333,82 @@ export default function ProductsPage() {
         </p>
       </div>
 
-      {/* Quick-nav */}
-      <nav className="flex flex-wrap gap-2 justify-center mb-12">
-        {categories.map((cat) => (
-          <a
-            key={cat.id}
-            href={`#${cat.id}`}
-            className="flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold border transition-all duration-200 hover:opacity-80"
-            style={{
-              borderColor: `${cat.color}40`,
-              color: cat.color,
-              backgroundColor: `${cat.color}0d`,
-            }}
-          >
-            <span className="w-4 h-4 flex items-center justify-center">
-              {cat.icon}
-            </span>
-            {cat.title}
-          </a>
-        ))}
-      </nav>
+      {/* Search bar */}
+      <div className="flex justify-center mb-8">
+        <div className="relative w-full max-w-xl">
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-default-400 pointer-events-none" />
+          <input
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Buscar producto..."
+            className="w-full pl-10 pr-10 py-3 rounded-xl border border-default-200 bg-default-50 text-sm text-foreground placeholder:text-default-400 outline-none focus:border-[#064194] focus:ring-2 focus:ring-[#064194]/20 transition-all"
+          />
+          {query && (
+            <button
+              onClick={() => setQuery("")}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-default-400 hover:text-default-600 transition-colors"
+              aria-label="Limpiar búsqueda"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/* Quick-nav (hidden while searching) */}
+      {!q && (
+        <nav className="flex flex-wrap gap-2 justify-center mb-12">
+          {categories.map((cat) => (
+            <a
+              key={cat.id}
+              href={`#${cat.id}`}
+              className="flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold border transition-all duration-200 hover:opacity-80"
+              style={{
+                borderColor: `${cat.color}40`,
+                color: cat.color,
+                backgroundColor: `${cat.color}0d`,
+              }}
+            >
+              <span className="w-4 h-4 flex items-center justify-center">
+                {cat.icon}
+              </span>
+              {cat.title}
+            </a>
+          ))}
+        </nav>
+      )}
+
+      {/* Search result count */}
+      {q && (
+        <p className="text-sm text-default-500 text-center mb-8">
+          {totalMatches > 0
+            ? `${totalMatches} producto${totalMatches !== 1 ? "s" : ""} encontrado${totalMatches !== 1 ? "s" : ""} para "${query}"`
+            : `Sin resultados para "${query}"`}
+        </p>
+      )}
 
       {/* Categories */}
       <div className="flex flex-col gap-16">
-        {categories.map((cat) => (
-          <CategorySection key={cat.id} cat={cat} />
-        ))}
+        {filtered.length > 0 ? (
+          filtered.map((cat) => (
+            <CategorySection key={cat.id} cat={cat} products={cat.products} />
+          ))
+        ) : (
+          <div className="flex flex-col items-center justify-center py-24 text-default-400 gap-3">
+            <Search className="w-10 h-10 opacity-40" />
+            <p className="text-base font-medium">No se encontraron productos</p>
+            <button
+              onClick={() => setQuery("")}
+              className="text-sm text-[#064194] hover:underline"
+            >
+              Limpiar búsqueda
+            </button>
+          </div>
+        )}
       </div>
+
+      <ScrollToTopButton />
     </div>
   );
 }
