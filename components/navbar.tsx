@@ -28,6 +28,7 @@ import {
 
 export const Navbar = () => {
   const pathname = usePathname();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 
   const searchInput = (
@@ -52,14 +53,14 @@ export const Navbar = () => {
   );
 
   return (
-    <HeroUINavbar maxWidth="xl" position="sticky" className = "py-2">
+    <HeroUINavbar maxWidth="xl" position="sticky" className="py-2" isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand>
           <NextLink href="/">
             <Image
               src="/logo_color.png"
               alt="Logo"
-              className="pl-20 h-42 w-auto object-contain"
+              className="pl-5 md:pl-20 h-42 w-auto object-contain"
             />
           </NextLink>
         </NavbarBrand>
@@ -84,21 +85,25 @@ export const Navbar = () => {
         </NavbarItem>
       </NavbarContent>
 
+      <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
+        <ThemeSwitch />
+        <NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
+      </NavbarContent>
+
       <NavbarMenu>
         {searchInput}
         <div className="mx-4 mt-2 flex flex-col gap-2">
-          {siteConfig.navMenuItems.map((item, index) => (
-            <NavbarMenuItem key={`${item}-${index}`}>
+          {siteConfig.navItems.map((item, index) => (
+            <NavbarMenuItem key={`${item.label}-${index}`}>
               <Link
-                color={
-                  index === 2
-                    ? "primary"
-                    : index === siteConfig.navMenuItems.length - 1
-                      ? "danger"
-                      : "foreground"
-                }
-                href="#"
+                as={NextLink}
+                color="foreground"
+                href={item.href}
                 size="lg"
+                onClick={() => setIsMenuOpen(false)}
+                className={clsx({
+                  "text-[#064194] font-bold": item.href === pathname,
+                })}
               >
                 {item.label}
               </Link>
