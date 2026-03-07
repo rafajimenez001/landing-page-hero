@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 
-const STORAGE_KEY = "elite_medical_professional";
 const ALLOWED_PATHS = ["/", "/contact"];
 
 export function HealthDisclaimerModal() {
@@ -13,36 +12,26 @@ export function HealthDisclaimerModal() {
 
   useEffect(() => {
     try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      const isRestricted = !ALLOWED_PATHS.some(
-        (p) => pathname === p || pathname.startsWith(p + "/")
-      );
-
-      if (!stored) {
-        setShow(true);
-      } else if (stored === "no" && isRestricted) {
-        // Re-show the modal so the user can change their answer
+      const accepted = sessionStorage.getItem("health_disclaimer_accepted");
+      if (!accepted) {
         setShow(true);
       }
     } catch {
-      // localStorage not available — allow access
+      setShow(true);
     }
-  }, [pathname]);
+  }, []);
 
   const handleYes = () => {
     try {
-      localStorage.setItem(STORAGE_KEY, "yes");
+      sessionStorage.setItem("health_disclaimer_accepted", "yes");
     } catch {}
     setShow(false);
   };
 
   const handleNo = () => {
-    try {
-      localStorage.setItem(STORAGE_KEY, "no");
-    } catch {}
     setShow(false);
     const isAllowed = ALLOWED_PATHS.some(
-      (p) => pathname === p || pathname.startsWith(p + "/")
+      (p) => pathname === p || pathname.startsWith(p + "/"),
     );
     if (!isAllowed) {
       router.replace("/");

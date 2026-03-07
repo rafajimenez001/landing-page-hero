@@ -4,7 +4,7 @@ import { subtitle } from "@/components/primitives";
 import { Card, CardHeader, CardBody } from "@heroui/card";
 import { Chip } from "@heroui/chip";
 import { motion, AnimatePresence } from "framer-motion";
-import { ScanSearch, Bone, Dna, Layers, Activity, Brain, ArrowUp, Search, X, FileText } from "lucide-react";
+import { ScanSearch, Bone, Dna, Brain, ArrowUp, Search, X, FileText } from "lucide-react";
 import { useState, useEffect } from "react";
 
 type Product = { name: string; brand: string; group: string; pdfUrl?: string };
@@ -108,7 +108,23 @@ const categories: Category[] = [
     title: "Columna",
     description:
       "Soluciones completas para cirugía de columna: fijación abierta y mínimamente invasiva, cajas intersomáticas cervicales y lumbares, prótesis de disco y vertebroplastia.",
-    icon: <Layers className="w-7 h-7" />,
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+        {/* Vertebral body */}
+        <rect x="16" y="22" width="32" height="20" rx="4" />
+        {/* Spinal canal dot */}
+        <circle cx="32" cy="32" r="2.5" fill="currentColor" stroke="none" />
+        {/* Spinous process (top) */}
+        <path d="M26 22c-2-4-6-8-6-8h-4s2 6 4 8" />
+        <path d="M38 22c2-4 6-8 6-8h4s-2 6-4 8" />
+        {/* Transverse processes (wings) */}
+        <path d="M16 28c-4-1-10-2-12-1v6c2 1 8 0 12-1" />
+        <path d="M48 28c4-1 10-2 12-1v6c-2 1-8 0-12-1" />
+        {/* Spinous process (bottom) */}
+        <path d="M26 42c-2 4-6 8-6 8h-4s2-6 4-8" />
+        <path d="M38 42c2 4 6 8 6 8h4s-2-6-4-8" />
+      </svg>
+    ),
     color: "#4f46e5",
     products: [
       { name: "Sistema de Fijación Abierto VENUS", brand: "HUMAN TECH", group: "Sistemas de Fijación", pdfUrl: "https://thespinemarketgroup.com/wp-content/uploads/2021/02/venus-fixation-SGT-HumanTech-Spine.pdf" },
@@ -142,7 +158,21 @@ const categories: Category[] = [
     title: "Reemplazo Articular",
     description:
       "Prótesis de cadera, rodilla y hombro con opciones cementadas, no cementadas y de revisión para cada necesidad clínica.",
-    icon: <Activity className="w-7 h-7" />,
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 48" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+        {/* Femur shaft (top) */}
+        <path d="M13 0h6v10h-6z" />
+        {/* Femoral condyles (two lobes) */}
+        <path d="M8 10c-3 0-5 2.5-5 5.5S7 22 10 22h5M24 10c3 0 5 2.5 5 5.5S25 22 22 22h-5" />
+        <path d="M10 22h12" />
+        {/* Joint space gap */}
+        <path d="M7 26h18" />
+        {/* Tibial plateau */}
+        <path d="M7 26c-2 1-3 3-3 5v1h24v-1c0-2-1-4-3-5" />
+        {/* Tibia shaft (bottom) */}
+        <path d="M13 32h6v16h-6z" />
+      </svg>
+    ),
     color: "#b45309",
     products: [
       { name: "ACCOLLADE — Cadera No Cementada, Cabeza Cerámica", brand: "STRYKER", group: "Cadera", pdfUrl: "https://www.stryker.com/content/dam/stryker/joint-replacement/products/accoladeii/resources/Accolade%20II%20Design%20Rationale%20ACCII-PG-3_Rev-1_22894.pdf" },
