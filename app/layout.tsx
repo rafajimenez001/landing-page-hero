@@ -8,6 +8,7 @@ import { Providers } from "./providers";
 
 import { siteConfig } from "@/config/site";
 import { Navbar } from "@/components/navbar";
+import { HealthDisclaimerModal } from "@/components/health-disclaimer-modal";
 
 const fontSans = Inter({
   subsets: ["latin"],
@@ -48,6 +49,7 @@ export default function RootLayout({
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "light", enableSystem: false }}>
           <div className="relative flex flex-col h-screen">
+            <HealthDisclaimerModal />
             <Navbar />
             <main className="flex-grow">
               {children}
